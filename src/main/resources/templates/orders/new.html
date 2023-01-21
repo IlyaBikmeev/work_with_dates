@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New order</title>
+</head>
+<body>
+
+  <form th:method="post" th:action="@{/orders}" th:object="${order}">
+      <div>
+          <label for="guitar">Guitar</label>
+          <input type="radio" name="products" th:field="*{item}" value="Guitar" id="guitar">
+      </div>
+      <div>
+            <label for="violin">Violin</label>
+            <input type="radio" name="products" th:field="*{item}" value="Violin" id="violin">
+      </div>
+      <div>
+          <label for="piano">Piano</label>
+          <input type="radio" name="products" th:field="*{item}" value="Piano" id="piano">
+      </div>
+
+      <select name="delivery-type" id="delivery-type" th:field="*{deliveryType}">
+          <option th:each="delType : ${T(com.example.demo.model.DeliveryType).values()}"
+            th:value="${delType}" th:text="${delType}"></option>
+      </select>
+      
+
+      <input type="datetime-local" th:field="*{date}">
+      <input type="submit" value="Submit">
+  </form>
+
+</body>
+</html>
